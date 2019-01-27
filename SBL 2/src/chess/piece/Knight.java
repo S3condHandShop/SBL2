@@ -4,6 +4,10 @@ import chess.Color;
 
 public class Knight extends ChessPiece{
 
+    public Knight(int[] piecePosition, ChessPieceType type, Color color) {
+        super(piecePosition, type, color);
+    }
+
     public int [][] legalMoves = {
             {-2, -1}, {-2, +1}, {-1, -2}, {-1, +2},     //All legal moves of a Knight, no exception handling yet
             {+2, -1}, {-1, -2}, {-2, +1}, {-1, +2}      //Given as a two dimensional Array
@@ -11,16 +15,13 @@ public class Knight extends ChessPiece{
 
     @Override
     public String toString() {
-        String chessPieceLooks = "";
-        char characterKnight = '\u2658';
-        chessPieceLooks += characterKnight;
-        return chessPieceLooks;
+        String pieceSymbol = "";
+        if (this.getColor().equals(Color.WHITE)) pieceSymbol += '\u2658';
+        pieceSymbol += '\u265E';
+        return pieceSymbol;
     }
 
-    public Knight(int[][] piecePosition, ChessPieceType type, Color color)
-    {
-        super(piecePosition, type, color);
-    }
+
 
 
 
