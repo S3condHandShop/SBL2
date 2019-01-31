@@ -147,7 +147,7 @@ public class Board{
                     if (getBoard()[row][col] == null)
                         str += '\u26da';
                     else
-                        str += getBoard()[row][col].getType().toString();
+                        str += getBoard()[row][col];
 
                     /* Methode die die Klasse zurückgibt ist sinnvoll */
 
