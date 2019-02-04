@@ -8,15 +8,17 @@ public class Knight extends ChessPiece{
         super(piecePosition, type, color);
     }
 
+    //All legalMoves of a Knight
     public int [][] legalMoves = {
-            {-2, -1}, {-2, +1}, {-1, -2}, {-1, +2},     //All legal moves of a Knight, no exception handling yet
-            {+2, -1}, {-1, -2}, {-2, +1}, {-1, +2}      //Given as a two dimensional Array
+            {-2, -1}, {-2, +1}, {-1, -2}, {-1, +2},
+            {+2, -1}, {-1, -2}, {-2, +1}, {-1, +2}
     };
 
     @Override
     public String toString() {
         String pieceSymbol = "";
-        if (this.getColor().equals(Color.WHITE)) pieceSymbol += '\u2658';
+        if (this.getColor().equals(Color.WHITE))
+            pieceSymbol += '\u2658';
         pieceSymbol += '\u265E';
         return pieceSymbol;
     }

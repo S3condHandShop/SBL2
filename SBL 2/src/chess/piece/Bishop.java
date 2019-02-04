@@ -10,9 +10,10 @@ public class Bishop extends ChessPiece {
 
     }
 
+    /*legalMoves of a Bishop */
     public int [][] legalMoves = {
-            {+1, -1}, {+1, +1}, {-1, -1}, {-1, +1},     //All legal moves of a Knight, no exception handling yet
-            {+2, -2}, {+2, +2}, {-2, -2}, {-2, +2},      //Given as a two dimensional Array
+            {+1, -1}, {+1, +1}, {-1, -1}, {-1, +1},
+            {+2, -2}, {+2, +2}, {-2, -2}, {-2, +2},
             {+3, -3}, {+3, +3}, {-3, -3}, {-3, +3},
             {+4, -4}, {+4, +4}, {-4, -4}, {-4, +4},
             {+5, -5}, {+5, +5}, {-5, -5}, {-5, +5},
@@ -25,8 +26,8 @@ public class Bishop extends ChessPiece {
     public String toString() {
         String pieceSymbol = "";
         if (this.getColor().equals(Color.WHITE))
-            pieceSymbol+='\u2657';      //Nach nur einer Anweisung ist das "else if" inklusive, somit überflüssig
-            pieceSymbol+='\u265D';
+            pieceSymbol+='\u2657';
+        pieceSymbol+='\u265D';
         return pieceSymbol;
     }
 }

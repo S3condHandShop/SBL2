@@ -71,7 +71,9 @@ public class Game implements Serializable {
         moveNotation += "-";
 
         moveNotation += getPieceNotation(rowDes, colDes);
-        allMoves.add(moveNotation);
+       try {
+           allMoves.add(moveNotation);
+       } catch (NullPointerException e) {}
 
 
         text += "auf ";
@@ -82,7 +84,9 @@ public class Game implements Serializable {
         if (beatsPiece) {
             text += " und schlägt dort ein gegnerischen Stein";
         }
-        allMoves.add(text);
+       try {
+           allMoves.add(text);
+       } catch (NullPointerException e) {}
     }
 
 
@@ -99,7 +103,7 @@ public class Game implements Serializable {
     public void saveMoves(String fileName) {
 
         //should work
-        
+
         BufferedWriter bw = null;
         FileWriter fw = null;
         File file = new File(fileName);
@@ -141,24 +145,47 @@ public class Game implements Serializable {
                 }
         }
     }
-
-    public static Game loadGameByMoves(ArrayList<String> getMoves) {
-    Game game = new Game();
-        for (String moves: getMoves) {
-            //Same method just a different way to do?
+    public static int piceNotationToInt(char n){
+        int i = -97;
+        if (n >= 'a' && n <= 'h'){
+            i += n;
+            return i;
         }
+        i = 56;
+        if (n >= '1' && n <= '8') {
+            i -= n;
+            return i;
+        }
+        return 0;
     }
 
-    public static Game loadGameByMoves(String fileName) {
-        Game game  = new Game();
-        game.add(fileName);     //How to ?
+    public static Game loadGameByMoves(ArrayList<String> getMoves) {
+        Game game = new Game();
+        Board board = new Board();
+        String temp;
+        int colCur;
+        int rowCur;
+        int colDes;
+        int rowDes;
+        for (int i=0; i<= getMoves.size(); i++) {
+            temp = getMoves.get(i);
+            colCur = piceNotationToInt(temp.charAt(1));
+            rowCur = piceNotationToInt(temp.charAt(2));
+            colDes = piceNotationToInt(temp.charAt(4));
+            rowDes = piceNotationToInt(temp.charAt(5));
+            board.move(rowCur, colCur, rowDes, colDes);
 
-
-
+            i++; // method skips every second getMoves String because they are only
+            // descriptions of the completed move
+        }
+        game.allMoves = getMoves;
         return game;
     }
 
-
+    public static Game loadGameByMoves(String fileName) {
+        Game game = loadGame(fileName);
+        return game;
+    }
 
 
     public static Game loadGame(String fileName) {
@@ -169,7 +196,7 @@ public class Game implements Serializable {
         ObjectInputStream inputStream = null;
         try {
             inputStream = new ObjectInputStream(new FileInputStream(fileName));
-             game = (Game) inputStream.readObject();
+            game = (Game) inputStream.readObject();
         } catch (IOException e) {
         } catch (ClassNotFoundException e) {
         } finally {
@@ -182,13 +209,68 @@ public class Game implements Serializable {
     }
 
 
-
-
-
     public static void main(String[] args) {
 
 
-        Board testBoard = new Board();
-        System.out.print(testBoard.toString());
+
+
+        int x1, x2, y1, y2;
+        x1 = 6;
+        x2 = 5;
+        y1 = 1;
+        y2 = 1;
+
+
+       Game game = new Game();
+        Board board = new Board();
+        System.out.print(board);
+
+
+        x1 = 6;
+        x2 = 5;
+        y1 = 1;
+        y2 = 1;
+
+
+        board.move(x1, x2, y1, y2);
+        System.out.print(board.toString());
+
+        /*
+        boolean beatsPiece = board.beatsPiece(board.getBoard(), x2, y2);
+        game.setMoves(board.getBoard()[x1][y1].getType(), x1, y1, x2, y2, beatsPiece);
+        board.move(x1, y1, x2, y2);
+        System.out.println(board);
+        System.out.println();
+
+        x1 = 7;
+        y1 = 1;
+        x2 = 5;
+        y2 = 2;
+        beatsPiece = board.beatsPiece(board.getBoard(), x2, y2);
+        game.setMoves(board.getBoard()[x1][y1].getType(), x1, y1, x2, y2, beatsPiece);
+        board.move(x1, y1, x2, y2);
+        System.out.println();
+        System.out.println(board);
+        System.out.println();
+
+        x1 = 7;
+        y1 = 2;
+        x2 = 5;
+        y2 = 0;
+        beatsPiece = board.beatsPiece(board.getBoard(), x2, y2);
+        game.setMoves(board.getBoard()[x1][y1].getType(), x1, y1, x2, y2, beatsPiece);
+        board.move(x1, y1, x2, y2);
+        System.out.println(board);
+        System.out.println();
+
+       try {
+           game.printMoves();
+       }catch (NullPointerException e) {}
+
+        game.saveGame("TestGame.ser");
+
+
+        loadGame("TestGame.ser");
+        System.out.print(board);*/
     }
 }
