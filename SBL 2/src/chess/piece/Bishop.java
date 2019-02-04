@@ -27,7 +27,7 @@ public class Bishop extends ChessPiece {
         String pieceSymbol = "";
         if (this.getColor().equals(Color.WHITE))
             pieceSymbol+='\u2657';
-        pieceSymbol+='\u265D';
+         else        pieceSymbol+='\u265D';
         return pieceSymbol;
     }
 }

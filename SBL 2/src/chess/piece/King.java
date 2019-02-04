@@ -24,7 +24,7 @@ public class King extends ChessPiece{
         String pieceSymbol = "";
         if (this.getColor().equals(Color.WHITE))
             pieceSymbol+='\u2654';
-            pieceSymbol+='\u265A';
+            else pieceSymbol+='\u265A';
         return pieceSymbol;
     }
 }

@@ -25,7 +25,7 @@ public class Rook extends ChessPiece {
         String pieceSymbol = "";
         if (this.getColor().equals(Color.WHITE))
             pieceSymbol += '\u2656';
-        pieceSymbol += '\u265C';
+       else pieceSymbol += '\u265C';
         return pieceSymbol;
     }
 }

@@ -4,6 +4,8 @@ import chess.Color;
 import chess.piece.*;
 
 
+
+
 public class Board{
 
     public ChessPiece[][] board ;
@@ -43,42 +45,42 @@ public class Board{
 
         //knights
         piecePosition = new int[] {7, 1};
-        board[7][1] = new Rook(piecePosition, ChessPieceType.KNIGHT, Color.WHITE);
+        board[7][1] = new Knight(piecePosition, ChessPieceType.KNIGHT, Color.WHITE);
         piecePosition = new int[] {7, 6};
-        board[7][6] = new Rook(piecePosition, ChessPieceType.KNIGHT, Color.WHITE);
+        board[7][6] = new Knight(piecePosition, ChessPieceType.KNIGHT, Color.WHITE);
 
 
         piecePosition = new int[] {0, 1};
-        board[0][1] = new Rook(piecePosition, ChessPieceType.KNIGHT, Color.BLACK);
+        board[0][1] = new Knight(piecePosition, ChessPieceType.KNIGHT, Color.BLACK);
         piecePosition = new int[] {0, 6};
-        board[0][6] = new Rook(piecePosition, ChessPieceType.KNIGHT, Color.BLACK);
+        board[0][6] = new Knight(piecePosition, ChessPieceType.KNIGHT, Color.BLACK);
 
         //queens
         piecePosition = new int[] {7, 4};
-        board[7][4] = new Rook(piecePosition, ChessPieceType.QUEEN, Color.WHITE);
+        board[7][4] = new Queen(piecePosition, ChessPieceType.QUEEN, Color.WHITE);
 
 
         piecePosition = new int[] {0, 4};
-        board[0][4] = new Rook(piecePosition, ChessPieceType.QUEEN, Color.BLACK);
+        board[0][4] = new Queen(piecePosition, ChessPieceType.QUEEN, Color.BLACK);
 
         //kings
         piecePosition = new int[] {7, 3};
-        board[7][3] = new Rook(piecePosition, ChessPieceType.KING, Color.WHITE);
+        board[7][3] = new King(piecePosition, ChessPieceType.KING, Color.WHITE);
 
 
         piecePosition = new int[] {0, 3};
-        board[0][3] = new Rook(piecePosition, ChessPieceType.KING, Color.BLACK);
+        board[0][3] = new King(piecePosition, ChessPieceType.KING, Color.BLACK);
 
         //bishops
         piecePosition = new int[] {7, 2};
-        board[7][2] = new Rook(piecePosition, ChessPieceType.BISHOP, Color.WHITE);
+        board[7][2] = new Bishop(piecePosition, ChessPieceType.BISHOP, Color.WHITE);
         piecePosition = new int[] {7, 5};
-        board[7][5] = new Rook(piecePosition, ChessPieceType.BISHOP, Color.WHITE);
+        board[7][5] = new Bishop(piecePosition, ChessPieceType.BISHOP, Color.WHITE);
 
         piecePosition = new int[] {0, 2};
-        board[0][2] = new Rook(piecePosition, ChessPieceType.BISHOP, Color.BLACK);
+        board[0][2] = new Bishop(piecePosition, ChessPieceType.BISHOP, Color.BLACK);
         piecePosition = new int[] {0, 5};
-        board[0][5] = new Rook(piecePosition, ChessPieceType.BISHOP, Color.BLACK);
+        board[0][5] = new Bishop(piecePosition, ChessPieceType.BISHOP, Color.BLACK);
         this.board = board;
     }
 
@@ -94,12 +96,10 @@ public class Board{
 
     //Method which moves chessPiece from Current Position to Destination Position */
     public void move(int rowCur, int colCur, int rowDes, int colDes){
-
-        board[rowDes][colDes] = board[rowCur][rowCur];
+        //board[rowDes][colDes] = null;
+        board[rowDes][colDes] =  board[rowCur][rowCur];
         board[rowCur][colCur] = null;
-
     }
-
 
     /*Method checks whether Destination Position beats an enemy chessPiece
      Doesn't beat an enemy Piece if Destination is null or alliance*/
@@ -128,7 +128,7 @@ public class Board{
                 if (this.getBoard()[row][col] == null)
                     str += '\u26da';
                 else
-                    str += this.getBoard()[row][col].getType();
+                    str += this.getBoard()[row][col];
 
 
                 str += columnSpacing;

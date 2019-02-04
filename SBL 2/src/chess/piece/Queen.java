@@ -13,7 +13,7 @@ public class Queen extends ChessPiece {
         String pieceSymbol = "";
         if (this.getColor().equals(Color.WHITE))
             pieceSymbol += '\u2655';
-        pieceSymbol += '\u265B';
+        else pieceSymbol += '\u265B';
         return pieceSymbol;
     }
 

@@ -16,7 +16,7 @@ public class Game implements Serializable {
 
     private ArrayList<String> allMoves;
 
-    /*Martin*/
+
     public void printMoves() {
         for (int i = 0; i < getMoves().size(); i++) {
             System.out.print(getMoves().get(i));
@@ -90,6 +90,8 @@ public class Game implements Serializable {
     }
 
 
+
+    //Methods returns a String of the piece Notation
     public String getPieceNotation(int row, int col) {
         String str = "";
         char colChar = 'a';
@@ -100,9 +102,9 @@ public class Game implements Serializable {
         return str;
     }
 
-    public void saveMoves(String fileName) {
 
-        //should work
+    //Saves all moves in an file called FileName
+    public void saveMoves(String fileName) {
 
         BufferedWriter bw = null;
         FileWriter fw = null;
@@ -125,17 +127,16 @@ public class Game implements Serializable {
         }
     }
 
+    //serialises object Game
     public void saveGame(String fileName) {
 
-        //Method should work, also not tested yet
 
         ObjectOutputStream oos = null;
         try {
             oos = new ObjectOutputStream(
                     new FileOutputStream(fileName));
 
-            //Game game = new Game();  redundant???
-            oos.writeObject(this.getMoves());
+            oos.writeObject(this);
         } catch (IOException e) {
         } finally {
             if (oos != null)
@@ -188,9 +189,8 @@ public class Game implements Serializable {
     }
 
 
+    //Serialises game out of file called fileName
     public static Game loadGame(String fileName) {
-
-        //Not tested yet, but should be fine
 
         Game game = new Game();
         ObjectInputStream inputStream = null;
@@ -211,29 +211,17 @@ public class Game implements Serializable {
 
     public static void main(String[] args) {
 
-
-
-
-        int x1, x2, y1, y2;
-        x1 = 6;
-        x2 = 5;
-        y1 = 1;
-        y2 = 1;
-
-
-       Game game = new Game();
+        Game game = new Game();
         Board board = new Board();
-        System.out.print(board);
+int x1 = 6, x2 = 3, y1 = 7, y2 = 1;
 
-
-        x1 = 6;
-        x2 = 5;
-        y1 = 1;
-        y2 = 1;
+//loadGame("Test.bin").toString();
 
 
         board.move(x1, x2, y1, y2);
         System.out.print(board.toString());
+
+
 
         /*
         boolean beatsPiece = board.beatsPiece(board.getBoard(), x2, y2);

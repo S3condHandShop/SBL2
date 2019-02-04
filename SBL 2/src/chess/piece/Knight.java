@@ -19,7 +19,8 @@ public class Knight extends ChessPiece{
         String pieceSymbol = "";
         if (this.getColor().equals(Color.WHITE))
             pieceSymbol += '\u2658';
-        pieceSymbol += '\u265E';
+        else
+            pieceSymbol += '\u265E';
         return pieceSymbol;
     }
 

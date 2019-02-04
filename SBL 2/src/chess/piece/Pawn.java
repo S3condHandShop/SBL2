@@ -30,7 +30,7 @@ public class Pawn extends ChessPiece{
         String pieceSymbol = "";
         if (this.getColor().equals(Color.WHITE))
             pieceSymbol+='\u2659';
-        pieceSymbol+='\u265F';
+      else   pieceSymbol+='\u265F';
         return pieceSymbol;
     }
 }
